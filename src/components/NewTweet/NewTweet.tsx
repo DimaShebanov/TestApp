@@ -3,7 +3,7 @@ import {NewTweetProps} from "./NewTweet.interfaces";
 import {AUTHOR, TWEET_TOP_CAP} from "./contants";
 import {v4 as uuidV4} from "uuid";
 import moment from "moment";
-import {Counter, Footer, Input, Root, SubmitButton } from './NewTweet.styled';
+import {Author, Counter, Footer, Input, Root, SubmitButton } from './NewTweet.styled';
 
 const NewTweet: React.FC<NewTweetProps> = (props) => {
     const {onSubmit} = props;
@@ -29,9 +29,8 @@ const NewTweet: React.FC<NewTweetProps> = (props) => {
     
     return (
         <Root>
-            <div>{AUTHOR}</div>
+            <Author>{AUTHOR}</Author>
             <Input onChange={onChange} value={content}/>
-
             <Footer>
                 <Counter error={charsLeft < 0}>{charsLeft}</Counter>
                 <SubmitButton disabled={isButtonDisabled} onClick={onTweet}>Tweet</SubmitButton>

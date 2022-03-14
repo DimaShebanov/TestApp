@@ -1,16 +1,16 @@
 import React from 'react';
 import {TweetProps} from "./Tweet.interfaces";
+import {Author, Content, Root, Date } from './Tweet.styled';
 
 const Tweet: React.FC<TweetProps> = (props) => {
     const {author, content, date} = props.item;
 
-
     return (
-        <div>
-            <div><strong>{author}</strong></div>
-            <div>{content}</div>
-            <div><pre>{date.toISOString()}</pre></div>
-        </div>
+        <Root>
+            <Author>{author}</Author>
+            <Content>{content}</Content>
+            <Date>{date.toISOString()}</Date>
+        </Root>
     );
 };
 
