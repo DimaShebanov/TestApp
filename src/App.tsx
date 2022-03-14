@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useCallback, useState} from 'react';
 import './App.css';
+import { Container } from './App.styled';
+import NewTweet from "./components/NewTweet/NewTweet";
+import Tweet from './components/Tweet/Tweet';
+import {TweetItem} from "./interfaces";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      const [tweets, setTweets] = useState<Array<TweetItem>>([]);
+
+      const onSubmit = useCallback((newTweet: TweetItem) => {
+        setTweets((oldTweets) => [...oldTweets, newTweet]);
+      }, []);
+
+      return (
+        <Container>
+          <NewTweet onSubmit={onSubmit}/>
+
+          {tweets.map((tweet) => (
+              <Tweet key={tweet.id} item={tweet}/>
+          ))}
+        </Container>
+      );
 }
 
 export default App;
